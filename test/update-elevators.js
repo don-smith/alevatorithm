@@ -20,6 +20,7 @@ test('will stay on wait floor', (t) => {
   t.is(newElevators[0].floor, floor)
 })
 
+// need this?
 test('will go up a floor', (t) => {
   let floor = 5
   let elevators = [{
@@ -31,6 +32,19 @@ test('will go up a floor', (t) => {
   t.is(newElevators[0].floor, floor + 1)
 })
 
+test('will not go past top floor', (t) => {
+  let floor = 13
+  let elevators = [{
+    floor: floor,
+    direction: 1,
+    waitFloor: 0
+  }]
+  let newElevators = updateElevators(t.context.building, elevators, [])
+  t.is(newElevators[0].floor, floor)
+// t.is(newElevators[0].direction, -1)
+})
+
+// need this?
 test('will go down a floor', (t) => {
   let floor = 5
   let elevators = [{
@@ -40,6 +54,18 @@ test('will go down a floor', (t) => {
   }]
   let newElevators = updateElevators(t.context.building, elevators, [])
   t.is(newElevators[0].floor, floor - 1)
+})
+
+test('will not go below bottom floor', (t) => {
+  let floor = -2
+  let elevators = [{
+    floor: floor,
+    direction: -1,
+    waitFloor: 0
+  }]
+  let newElevators = updateElevators(t.context.building, elevators, [])
+  t.is(newElevators[0].floor, floor)
+// t.is(newElevators[0].direction, 1)
 })
 
 test('will go down towards wait floor', (t) => {
