@@ -1,28 +1,27 @@
-import config from './lib/config'
 import building from './lib/building'
-import adjustSchedule from './lib/adjust-schedule'
+import updateElevators from './lib/update-elevators'
+import updatePassengers from './lib/update-passengers'
 import getNewPassengers from './lib/get-new-passengers'
 
-let schedule = []
-let newPassengers = []
-let progressIntervals = 0
-let speed = 1000 * config.timeMultiplier
+let progress = 0
+let elevators = []
+let passengers = []
 
-let intervalId = setInterval(runElevators, speed)
+const passengerLoad = 2
+const totalIterations = 100
+const simulationInterval = setInterval(runSimulation, 50)
 
-function runElevators () {
-  let pph = building.passengersPerHour
-  let multiplier = config.timeMultiplier
-  newPassengers = getNewPassengers(pph, multiplier)
-  schedule = adjustSchedule(schedule, newPassengers)
+function runSimulation () {
+  passengers = getNewPassengers(passengers, passengerLoad)
+  elevators = updateElevators(building, elevators, passengers)
+  passengers = updatePassengers(elevators, passengers)
   manageProgress()
 }
 
 function manageProgress () {
-  progressIntervals += 1
-  process.stdout.write('.')
-  if (progressIntervals >= config.durationIntervals) {
-    clearInterval(intervalId)
+  // process.stdout.write('.')
+  progress += 1
+  if (progress > totalIterations) {
+    clearInterval(simulationInterval)
   }
 }
-
