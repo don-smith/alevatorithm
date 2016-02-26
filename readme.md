@@ -1,4 +1,4 @@
-Elegorithm
+Alevatorithm
 ====================
 
 > An elevator algorithm in several different programming styles
