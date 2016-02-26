@@ -1,9 +1,9 @@
 import test from 'ava'
 import 'babel-register'
-import getNewPassengers from '../lib/get-new-passengers'
+import createNewPassengers from '../lib/create-new-passengers'
 
 test('new requests', (t) => {
   let passengerLoad = 10
-  let newPassengers = getNewPassengers([], passengerLoad)
+  let newPassengers = createNewPassengers([], passengerLoad)
   t.ok(newPassengers.length < passengerLoad)
 })

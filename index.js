@@ -1,7 +1,7 @@
 import building from './lib/building'
 import updateElevators from './lib/update-elevators'
 import updatePassengers from './lib/update-passengers'
-import getNewPassengers from './lib/get-new-passengers'
+import createNewPassengers from './lib/create-new-passengers'
 
 let progress = 0
 let elevators = []
@@ -12,8 +12,8 @@ const totalIterations = 100
 const simulationInterval = setInterval(runSimulation, 50)
 
 function runSimulation () {
-  passengers = getNewPassengers(passengers, passengerLoad)
   elevators = updateElevators(building, elevators, passengers)
+  passengers = createNewPassengers(passengers, passengerLoad)
   passengers = updatePassengers(elevators, passengers)
   manageProgress()
 }

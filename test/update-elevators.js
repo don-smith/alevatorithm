@@ -16,7 +16,7 @@ test('will stay on wait floor', (t) => {
     direction: 0,
     waitFloor: floor
   }]
-  let newElevators = updateElevators({}, elevators, [])
+  let newElevators = updateElevators(t.context.building, elevators, [])
   t.is(newElevators[0].floor, floor)
 })
 

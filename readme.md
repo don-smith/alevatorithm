@@ -1,7 +1,15 @@
 Elegorithm
 ====================
 
-> An elevator algorithm ... because I was curious.
+> An elevator algorithm in several different programming styles
+
+## Various paradigms
+
+* A functional approach using only core JavaScript (in progress)
+* A functional approach using an exteral library like Ramda
+* An object oriented approach with events
+* A reactive approach with RxJS
+* Using a state machine
 
 ## Domain model
 
