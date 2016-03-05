@@ -20,52 +20,40 @@ test('will stay on wait floor', (t) => {
   t.is(newElevators[0].floor, floor)
 })
 
-// need this?
-test('will go up a floor', (t) => {
+test('will go up a floor with a passenger inside', (t) => {
   let floor = 5
   let elevators = [{
+    id: 1,
     floor: floor,
     direction: 1,
     waitFloor: floor
   }]
-  let newElevators = updateElevators(t.context.building, elevators, [])
+  let passengers = [{
+    inElevator: 1,
+    direction: 1,
+    destination: 7,
+    source: 1
+  }]
+  let newElevators = updateElevators(t.context.building, elevators, passengers)
   t.is(newElevators[0].floor, floor + 1)
 })
 
-test('will not go past top floor', (t) => {
-  let floor = 13
-  let elevators = [{
-    floor: floor,
-    direction: 1,
-    waitFloor: 0
-  }]
-  let newElevators = updateElevators(t.context.building, elevators, [])
-  t.is(newElevators[0].floor, floor)
-// t.is(newElevators[0].direction, -1)
-})
-
-// need this?
-test('will go down a floor', (t) => {
+test('will go down a floor with passenger inside', (t) => {
   let floor = 5
   let elevators = [{
+    id: 1,
     floor: floor,
     direction: -1,
     waitFloor: floor
   }]
-  let newElevators = updateElevators(t.context.building, elevators, [])
-  t.is(newElevators[0].floor, floor - 1)
-})
-
-test('will not go below bottom floor', (t) => {
-  let floor = -2
-  let elevators = [{
-    floor: floor,
-    direction: -1,
-    waitFloor: 0
+  let passengers = [{
+    inElevator: 1,
+    direction: 1,
+    destination: 7,
+    source: 1
   }]
-  let newElevators = updateElevators(t.context.building, elevators, [])
-  t.is(newElevators[0].floor, floor)
-// t.is(newElevators[0].direction, 1)
+  let newElevators = updateElevators(t.context.building, elevators, passengers)
+  t.is(newElevators[0].floor, floor - 1)
 })
 
 test('will go down towards wait floor', (t) => {
@@ -92,7 +80,7 @@ test('will go up towards wait floor', (t) => {
   t.is(newElevators[0].floor, floor + 1)
 })
 
-test('will go up to passenger', (t) => {
+test('will go up to new passenger', (t) => {
   let floor = 1
   let elevators = [{
     floor: floor,
@@ -108,7 +96,7 @@ test('will go up to passenger', (t) => {
   t.is(newElevators[0].floor, floor + 1)
 })
 
-test('will go down to passenger', (t) => {
+test('will go down to new passenger', (t) => {
   let floor = 7
   let elevators = [{
     floor: floor,
