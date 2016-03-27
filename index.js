@@ -25,7 +25,7 @@ let elevators = constructElevators(building)
 let simulationInterval = setInterval(runSimulation, 50)
 
 function runSimulation () {
-  // passengers = createNewPassengers(passengers, passengerLoad, building)
+  passengers = createNewPassengers(passengers, passengerLoad, building)
   elevators = updateElevators(building, elevators, passengers)
   passengers = updatePassengers(elevators, passengers)
   manageProgress()
