@@ -32,7 +32,8 @@ test('will go up a floor with a passenger inside', (t) => {
     source: 1,
     destination: 7,
     inElevator: 1,
-    direction: 1
+    direction: 1,
+    arrived: false
   }]
   let newElevators = updateElevators(t.context.building, elevators, passengers)
   t.is(newElevators[0].floor, 6)
@@ -49,7 +50,8 @@ test('will go down a floor with passenger inside', (t) => {
     source: 9,
     destination: 0,
     inElevator: 1,
-    direction: -1
+    direction: -1,
+    arrived: false
   }]
   let newElevators = updateElevators(t.context.building, elevators, passengers)
   t.is(newElevators[0].floor, 4)
@@ -66,7 +68,8 @@ test('will change direction with passenger inside', (t) => {
     source: 5,
     destination: 0,
     inElevator: 1,
-    direction: -1
+    direction: -1,
+    arrived: false
   }]
   let newElevators = updateElevators(t.context.building, elevators, passengers)
   t.is(newElevators[0].direction, -1)
@@ -107,7 +110,8 @@ test('will go up to new passenger', (t) => {
   let passengers = [{
     source: 5,
     destination: 0,
-    inElevator: false
+    inElevator: false,
+    arrived: false
   }]
   let newElevators = updateElevators(t.context.building, elevators, passengers)
   t.is(newElevators[0].floor, floor + 1)
@@ -123,7 +127,8 @@ test('will go down to new passenger', (t) => {
   let passengers = [{
     source: 5,
     destination: 0,
-    inElevator: false
+    inElevator: false,
+    arrived: false
   }]
   let newElevators = updateElevators(t.context.building, elevators, passengers)
   t.is(newElevators[0].floor, floor - 1)

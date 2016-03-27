@@ -13,14 +13,15 @@ const passengerLoad = 2
 const totalIterations = 40
 
 let progress = 0
-let passengers = [
-  {
-    source: 10,
-    destination: 0,
-    inElevator: false,
-    direction: -1
-  }
-]
+let totalArrived = 0
+let passengers = [{
+  source: 10,
+  destination: 0,
+  inElevator: false,
+  arrived: false,
+  waitTime: 0,
+  travelTime: 0
+}]
 let elevators = constructElevators(building)
 let simulationInterval = setInterval(runSimulation, 50)
 
@@ -36,7 +37,23 @@ function manageProgress () {
   progress += 1
   if (progress > totalIterations) {
     clearInterval(simulationInterval)
+    showArrivalTimes()
+    console.log(`${totalArrived} passengers arrived in ${totalIterations} cycles`)
   }
+}
+
+function showArrivalTimes () {
+  totalArrived = 0
+  passengers.forEach((passenger) => {
+    if (passenger.arrived) {
+      totalArrived += 1
+      let wait = passenger.waitTime
+      let travel = passenger.travelTime
+      let source = passenger.source
+      let destination = passenger.destination
+      console.log(`Arrived wait: ${wait}, travel: ${travel}, source: ${source}, destination: ${destination}`)
+    }
+  })
 }
 
 function showStatus () {
@@ -49,8 +66,7 @@ function showStatus () {
       if (passenger.inElevator === elevator.id) {
         let source = passenger.source
         let destination = passenger.destination
-        let inElevator = passenger.inElevator
-        console.log(`  Passenger source: ${source} destination: ${destination} inElevator: ${inElevator}`)
+        console.log(`  Passenger source: ${source} destination: ${destination}`)
       }
     })
   })
@@ -59,8 +75,7 @@ function showStatus () {
     if (passenger.inElevator === false) {
       let source = passenger.source
       let destination = passenger.destination
-      let inElevator = passenger.inElevator
-      console.log(`  Passenger source: ${source} destination: ${destination} inElevator: ${inElevator}`)
+      console.log(`  Passenger source: ${source} destination: ${destination}`)
     }
   })
   process.stdout.write('--------------- \n \n')

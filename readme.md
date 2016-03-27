@@ -1,15 +1,17 @@
 Alevatorithm
 ====================
 
-> An elevator algorithm in several different programming styles
+> An elevator algorithm
+
+Eventually this will be written in several different programming styles.
 
 ## Various paradigms
 
-* A functional approach using only core JavaScript (in progress)
+* A functional(ish) approach using only vanilla ES6 JavaScript (in progress)
 * A functional approach using an exteral library like Ramda
 * An object oriented approach with events
 * A reactive approach with RxJS
-* Using a state machine
+* Maybe using a state machine
 
 ## Domain model
 
@@ -17,8 +19,10 @@ Building
 - elevatorCount
 - numberOfLevels
 - numberOfSublevels
+- waitFloors (array of length elevatorCount)
 
 Elevator
+- id
 - floor
 - direction
 - waitFloor
@@ -26,4 +30,4 @@ Elevator
 Passenger
 - source
 - destination
-- inElevator (undefined or elevator index)
+- inElevator (undefined, false or elevator index)
