@@ -13,12 +13,19 @@ const passengerLoad = 2
 const totalIterations = 40
 
 let progress = 0
-let passengers = []
+let passengers = [
+  {
+    source: 10,
+    destination: 0,
+    inElevator: false,
+    direction: -1
+  }
+]
 let elevators = constructElevators(building)
 let simulationInterval = setInterval(runSimulation, 50)
 
 function runSimulation () {
-  passengers = createNewPassengers(passengers, passengerLoad, building)
+  // passengers = createNewPassengers(passengers, passengerLoad, building)
   elevators = updateElevators(building, elevators, passengers)
   passengers = updatePassengers(elevators, passengers)
   manageProgress()
@@ -42,7 +49,8 @@ function showStatus () {
       if (passenger.inElevator === elevator.id) {
         let source = passenger.source
         let destination = passenger.destination
-        console.log(`  Passenger source: ${source} destination: ${destination}`)
+        let inElevator = passenger.inElevator
+        console.log(`  Passenger source: ${source} destination: ${destination} inElevator: ${inElevator}`)
       }
     })
   })
@@ -51,7 +59,8 @@ function showStatus () {
     if (passenger.inElevator === false) {
       let source = passenger.source
       let destination = passenger.destination
-      console.log(`  Passenger source: ${source} destination: ${destination}`)
+      let inElevator = passenger.inElevator
+      console.log(`  Passenger source: ${source} destination: ${destination} inElevator: ${inElevator}`)
     }
   })
   process.stdout.write('--------------- \n \n')
