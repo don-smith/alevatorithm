@@ -10,10 +10,12 @@ const building = {
   waitFloors: [0, 7]
 }
 const passengerLoad = 2
-const totalIterations = 40
+const totalIterations = 50
 
 let progress = 0
 let totalArrived = 0
+let totalWaitTime = 0
+let totalTravelTime = 0
 let passengers = [{
   source: 10,
   destination: 0,
@@ -38,7 +40,11 @@ function manageProgress () {
   if (progress > totalIterations) {
     clearInterval(simulationInterval)
     showArrivalTimes()
-    console.log(`${totalArrived} passengers arrived in ${totalIterations} cycles`)
+    let passengerCount = passengers.length
+    let avgWait = Math.ceil(totalWaitTime / totalArrived)
+    let avgTravel = Math.ceil(totalTravelTime / totalArrived)
+    console.log(`${totalArrived} of ${passengerCount} passengers arrived in ${totalIterations} cycles`)
+    console.log(`average wait time: ${avgWait}, average travel time: ${avgTravel}`)
   }
 }
 
@@ -51,7 +57,9 @@ function showArrivalTimes () {
       let travel = passenger.travelTime
       let source = passenger.source
       let destination = passenger.destination
-      console.log(`Arrived wait: ${wait}, travel: ${travel}, source: ${source}, destination: ${destination}`)
+      totalWaitTime += wait
+      totalTravelTime += travel
+      console.log(`Arrival source: ${source}, destination: ${destination}, wait: ${wait}, travel: ${travel}`)
     }
   })
 }
@@ -72,7 +80,7 @@ function showStatus () {
   })
   console.log('Waiting passengers:')
   passengers.forEach((passenger) => {
-    if (passenger.inElevator === false) {
+    if (!passenger.arrived && passenger.inElevator === false) {
       let source = passenger.source
       let destination = passenger.destination
       console.log(`  Passenger source: ${source} destination: ${destination}`)
