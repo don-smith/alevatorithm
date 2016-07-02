@@ -11,5 +11,5 @@ test('new requests', (t) => {
   }
   let passengerLoad = 10
   let newPassengers = createNewPassengers([], passengerLoad, building)
-  t.ok(newPassengers.length < passengerLoad)
+  t.truthy(newPassengers.length < passengerLoad)
 })
