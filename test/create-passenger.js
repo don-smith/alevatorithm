@@ -13,16 +13,16 @@ test('source and destination are inside building', (t) => {
 
   if (passenger.direction > 0) {
     // going up
-    t.ok(passenger.source <= 0)
-    t.ok(passenger.source >= building.numberOfSublevels * -1)
-    t.ok(passenger.destination >= 0)
-    t.ok(passenger.destination <= building.numberOfLevels)
+    t.truthy(passenger.source <= 0)
+    t.truthy(passenger.source >= building.numberOfSublevels * -1)
+    t.truthy(passenger.destination >= 0)
+    t.truthy(passenger.destination <= building.numberOfLevels)
   } else {
     // going down
-    t.ok(passenger.source >= 0)
-    t.ok(passenger.source <= building.numberOfLevels)
-    t.ok(passenger.destination <= 0)
-    t.ok(passenger.destination >= building.numberOfSublevels * -1)
+    t.truthy(passenger.source >= 0)
+    t.truthy(passenger.source <= building.numberOfLevels)
+    t.truthy(passenger.destination <= 0)
+    t.truthy(passenger.destination >= building.numberOfSublevels * -1)
   }
 })
 
@@ -38,7 +38,7 @@ test('source and destination are different', (t) => {
   let count = 15
   while (count > 0) {
     // try a bunch of times since it's random
-    t.ok(passenger.source !== passenger.destination)
+    t.truthy(passenger.source !== passenger.destination)
     count--
   }
 })
