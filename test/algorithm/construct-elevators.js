@@ -1,6 +1,6 @@
 import test from 'ava'
 import 'babel-register'
-import { constructElevators } from '../lib/building'
+import { constructElevators } from '../../algorithm/building'
 
 test('will construct elevators', (t) => {
   let building = {

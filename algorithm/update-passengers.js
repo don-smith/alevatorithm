@@ -30,8 +30,9 @@ export default function updatePassengers (elevators, passengers) {
     } else {
       passenger.travelTime += 1
     }
+
+    return passenger
   })
 
-  // console.log('updatedPassengers count', updatedPassengers.length)
   return updatedPassengers
 }

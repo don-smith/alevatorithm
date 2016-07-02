@@ -1,6 +1,6 @@
 import test from 'ava'
 import 'babel-register'
-import createNewPassengers from '../lib/create-new-passengers'
+import createNewPassengers from '../../simulator/create-new-passengers'
 
 test('new requests', (t) => {
   let building = {

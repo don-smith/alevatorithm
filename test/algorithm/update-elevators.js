@@ -1,6 +1,6 @@
 import test from 'ava'
 import 'babel-register'
-import updateElevators from '../lib/update-elevators'
+import updateElevators from '../../algorithm/update-elevators'
 
 test.beforeEach((t) => {
   t.context.building = {

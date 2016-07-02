@@ -1,6 +1,6 @@
 import test from 'ava'
 import 'babel-register'
-import updatePassengers from '../lib/update-passengers'
+import updatePassengers from '../../algorithm/update-passengers'
 
 test('placeholder', (t) => {
 })

@@ -1,6 +1,6 @@
 import test from 'ava'
 import 'babel-register'
-import createPassenger from '../lib/create-passenger'
+import createPassenger from '../../simulator/create-passenger'
 
 test('source and destination are inside building', (t) => {
   let building = {
