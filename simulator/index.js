@@ -1,10 +1,8 @@
 import createNewPassengers from './create-new-passengers'
 
-let simulationInterval = null
-
 export function runSimulation (building, elevators, algorithm, options, monitor) {
   let passengers = []
-  simulationInterval = setInterval(runIteration, 50)
+  let simulationInterval = setInterval(runIteration, 50)
 
   function runIteration () {
     passengers = createNewPassengers(passengers, options.passengerLoad, building)
