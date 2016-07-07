@@ -3,15 +3,9 @@ Alevatorithm
 
 > An elevator algorithm
 
-Eventually this will be written in several different programming styles.
+## This algorithm
 
-## Various paradigms
-
-* A functional(ish) approach using only vanilla ES6 JavaScript (in progress)
-* A functional approach using an exteral library like Ramda
-* An object oriented approach with events
-* A reactive approach with RxJS
-* Maybe using a state machine
+This algorithm was the first and it's not at all optomised. In this implementation each elevator operates completely independently with no consideration for the state of the other elevators. This causes all elevators to respond to a single passenger, which is one of the conditions that could be optomised. Apparently a coordinator or shared queue would be better. That said, this does work and the tests pass.
 
 ## Domain model
 
