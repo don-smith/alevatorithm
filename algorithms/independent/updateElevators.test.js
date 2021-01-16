@@ -20,7 +20,7 @@ test('will go up a floor with a passenger inside', () => {
 
   const updated = updateElevators(building, elevators, passengers)[0]
 
-  expect(upated.floor).toBe(6)
+  expect(updated.floor).toBe(6)
 })
 
 test('will go down a floor with passenger inside', () => {
