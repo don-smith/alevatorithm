@@ -4,7 +4,7 @@
   "description": "Some elevator algorithms",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node index.js",
+    "independent": "babel-node index.js independent",
     "test": "jest"
   },
   "repository": {

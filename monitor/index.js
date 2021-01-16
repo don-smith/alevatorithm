@@ -17,22 +17,6 @@ export function showStatus (elevators, passengers, totalIterations) {
   }
 }
 
-function showArrivalTimes (passengers) {
-  totalArrived = 0
-  passengers.forEach((passenger) => {
-    if (passenger.arrived) {
-      totalArrived += 1
-      let wait = passenger.waitTime
-      let travel = passenger.travelTime
-      let source = passenger.source
-      let destination = passenger.destination
-      totalWaitTime += wait
-      totalTravelTime += travel
-      console.log(`Arrival source: ${source}, destination: ${destination}, wait: ${wait}, travel: ${travel}`)
-    }
-  })
-}
-
 function showDetails (elevators, passengers) {
   elevators.forEach((elevator) => {
     let id = elevator.id
@@ -56,4 +40,20 @@ function showDetails (elevators, passengers) {
     }
   })
   process.stdout.write('--------------- \n \n')
+}
+
+function showArrivalTimes (passengers) {
+  totalArrived = 0
+  passengers.forEach((passenger) => {
+    if (passenger.arrived) {
+      totalArrived += 1
+      let wait = passenger.waitTime
+      let travel = passenger.travelTime
+      let source = passenger.source
+      let destination = passenger.destination
+      totalWaitTime += wait
+      totalTravelTime += travel
+      console.log(`Arrival source: ${source}, destination: ${destination}, wait: ${wait}, travel: ${travel}`)
+    }
+  })
 }
