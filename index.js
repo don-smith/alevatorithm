@@ -1,7 +1,7 @@
 import { getByName } from './algorithms/getByName'
 import { constructElevators } from './building'
 import { runSimulation } from './simulator'
-import { showStatus } from './monitor'
+import * as monitor from './monitor'
 
 const building = {
   elevatorCount: 2,
@@ -9,13 +9,16 @@ const building = {
   numberOfSublevels: 2
 }
 
-const algorithmChoice = process.argv[2]
-const algorithm = getByName(algorithmChoice)
+const choice = process.argv[2]
+const algorithm = getByName(choice)
 const elevators = constructElevators(building)
 
 const options = {
   passengerLoad: 2,
-  totalIterations: 50 // rename to simulationCycles
+  totalIterations: 50,
+  displayCycles: true
 }
 
-runSimulation(building, elevators, algorithm, options, showStatus)
+const {passengerLoad: load, totalIterations: total} = options
+console.info(`Running the ${choice} algorithm with a load of ${load} for ${total} iterations.\n`)
+runSimulation(building, elevators, algorithm, options, monitor)
