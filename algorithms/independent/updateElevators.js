@@ -16,7 +16,6 @@ export default function updateElevators (building, elevators, passengers) {
     return {
       id: index,
       floor: theNextFloor,
-      waitFloor: elevator.waitFloor,
       direction: getDirection(elevator.floor, theNextFloor)
     }
   })
@@ -34,7 +33,7 @@ function getNextFloor (building, elevator, passengers) {
   if (passengerIsWaiting(passengers))
     return getFloorTowardsPassengerSource(building, elevator, passengers)
 
-  return getFloorTowardsWaitFloor(building, elevator)
+  return elevator.floor
 }
 
 function getElevatorPassengers (elevator, passengers) {
@@ -74,18 +73,6 @@ function getWaitingPassengers (passengers) {
 function getFloorTowardsPassengerSource (building, elevator, passengers) {
   const waitingPassengers = getWaitingPassengers(passengers)
   elevator.direction = waitingPassengers[0].source > elevator.floor ? 1 : -1
-  return nextFloor(elevator, building)
-}
-
-function getFloorTowardsWaitFloor (building, elevator) {
-  if (elevator.floor > elevator.waitFloor)
-    elevator.direction = -1
-  else if (elevator.floor < elevator.waitFloor)
-    elevator.direction = 1
-  else {
-    elevator.direction = 0
-    return elevator.floor
-  }
   return nextFloor(elevator, building)
 }
 

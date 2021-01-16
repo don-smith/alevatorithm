@@ -24,13 +24,11 @@ Building
 - `elevatorCount`
 - `numberOfLevels`
 - `numberOfSublevels`
-- `waitFloors` (array of length `elevatorCount`)
 
 Elevator
 - `id`
 - `floor`
 - `direction`
-- `waitFloor`
 
 Passenger
 - `source`

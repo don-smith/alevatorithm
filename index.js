@@ -6,8 +6,7 @@ import { showStatus } from './monitor'
 const building = {
   elevatorCount: 2,
   numberOfLevels: 13,
-  numberOfSublevels: 2,
-  waitFloors: [0, 7]
+  numberOfSublevels: 2
 }
 
 const algorithmChoice = process.argv[2]
