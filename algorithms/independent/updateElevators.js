@@ -11,23 +11,44 @@
  * @return {Array} the new array of elevators
  */
 export default function updateElevators (building, elevators, passengers) {
-  return elevators.map((elevator, index) => {
-    const theNextFloor = getNextFloor(building, elevator, passengers)
+  return elevators.map((elevator) => {
+    const {id, floor} = elevator
+    const elevatorPassengers = getElevatorPassengers(id, passengers)
+
+    // Don't update elevator's floor when letting passengers on or off
+    if (doorsMustOpen(floor, passengers)) return {
+      id: id,
+      floor: floor,
+      direction: 0
+    }
+
+    const nextFloor = getNextFloor(building, elevator, passengers)
     return {
-      id: index,
-      floor: theNextFloor,
-      direction: getDirection(elevator.floor, theNextFloor)
+      id: id,
+      floor: nextFloor,
+      direction: getDirection(elevator, nextFloor, elevatorPassengers, building)
     }
   })
 }
 
-function getDirection (elevatorFloor, nextFloor) {
-  if (elevatorFloor === nextFloor) return 0
-  return elevatorFloor < nextFloor ? 1 : -1
+function doorsMustOpen (floor, passengers) {
+  // Open doors to let passengers on or off
+  return passengers.some(({source, destination}) => {
+    return source === floor || destination === floor
+  })
+}
+
+function getDirection (elevator, nextFloor, passengers, building) {
+  const {floor} = elevator
+  if (floor === nextFloor && !passengers.length) return 0
+  if (floor === nextFloor) {
+    return getNextPassengerFloor(building, elevator, passengers)
+  }
+  return floor < nextFloor ? 1 : -1
 }
 
 function getNextFloor (building, elevator, passengers) {
-  if (elevatorHasPassengers(elevator, passengers))
+  if (elevatorHasPassengers(elevator.id, passengers))
     return getNextPassengerFloor(building, elevator, passengers)
 
   if (passengerIsWaiting(passengers))
@@ -36,14 +57,14 @@ function getNextFloor (building, elevator, passengers) {
   return elevator.floor
 }
 
-function getElevatorPassengers (elevator, passengers) {
+function getElevatorPassengers (elevatorId, passengers) {
   return passengers.filter(
-    passenger => passenger.inElevator === elevator.id,
+    passenger => passenger.inElevator === elevatorId,
   )
 }
 
-function elevatorHasPassengers (elevator, passengers) {
-  const elevatorPassengers = getElevatorPassengers(elevator, passengers)
+function elevatorHasPassengers (elevatorId, passengers) {
+  const elevatorPassengers = getElevatorPassengers(elevatorId, passengers)
   return elevatorPassengers.length > 0
 }
 
@@ -80,9 +101,8 @@ function nextFloor (elevator, building) {
   const { floor, direction } = elevator
   const { numberOfLevels: levels, numberOfSublevels: subLevels } = building
 
-  let nextFloor = elevator.floor
-  if (direction === 1 && floor !== levels) nextFloor = floor + 1
-  if (direction === -1 && floor !== subLevels * -1) nextFloor = floor - 1
+  if (direction === 1 && floor !== levels) return floor + 1
+  if (direction === -1 && floor !== subLevels * -1) return floor - 1
 
-  return nextFloor
+  return floor
 }

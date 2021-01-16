@@ -4,28 +4,29 @@
  */
 
 export default function updatePassengers (elevators, passengers) {
-  let updatedPassengers = passengers.map((passenger) => {
-    if (passenger.arrived) {
+  return passengers.map((passenger) => {
+    const {arrived, inElevator, source, destination} = passenger
+    if (arrived) {
       return passenger
     }
 
     elevators.forEach((elevator) => {
       // let passengers exit elevators
-      if (passenger.inElevator === elevator.id &&
-        passenger.destination === elevator.floor) {
-        passenger.arrived = true
-        passenger.inElevator = false
+      if (inElevator === elevator.id &&
+        destination === elevator.floor) {
+        arrived = true
+        inElevator = false
       }
 
       // let passengers enter elevators
-      if (passenger.inElevator === false &&
-        passenger.source === elevator.floor) {
-        passenger.inElevator = elevator.id
+      if (inElevator === false &&
+        source === elevator.floor) {
+        inElevator = elevator.id
       }
     })
 
     // increment arrival times
-    if (passenger.inElevator === false) {
+    if (inElevator === false) {
       passenger.waitTime += 1
     } else {
       passenger.travelTime += 1
@@ -33,6 +34,4 @@ export default function updatePassengers (elevators, passengers) {
 
     return passenger
   })
-
-  return updatedPassengers
 }
