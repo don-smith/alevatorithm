@@ -1,7 +1,9 @@
 import * as independent from './independent'
+import * as coordinator from './coordinator'
 
 const algorithms = {
-  independent
+  independent,
+  coordinator
 }
 
 export function getByName (name, log = console, app = process) {

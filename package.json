@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "independent": "babel-node index.js independent",
+    "coordinator": "babel-node index.js coordinator",
     "test": "jest --verbose"
   },
   "repository": {
