@@ -12,11 +12,12 @@
  */
 export function constructElevators (building) {
   let elevators = []
-  for (let index = 0; index < building.elevatorCount; index++) {
+  for (let id = 1; id < building.elevatorCount + 1; id++) {
     elevators.push({
-      id: index,
+      id: id,
       floor: 0,
-      direction: 0
+      direction: 0,
+      doorsOpen: false
     })
   }
   return elevators

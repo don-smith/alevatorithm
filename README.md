@@ -29,9 +29,12 @@ Elevator
 - `id`
 - `floor`
 - `direction`
+- `doorsOpen`
 
 Passenger
 - `source`
 - `destination`
-- `inElevator` (`undefined`, `false` or the index of an elevator)
+- `inElevator` (`0` while not inside or the id of the elevator once inside)
+- `waitTime`
+- `travelTime`
 

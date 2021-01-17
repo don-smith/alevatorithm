@@ -31,8 +31,8 @@ export default function createPassenger (building) {
   return {
     waitTime: 0,
     travelTime: 0,
+    inElevator: 0,
     arrived: false,
-    inElevator: false,
     direction: direction,
     source: direction < 0 ? highFloor : lowFloor,
     destination: direction < 0 ? lowFloor : highFloor

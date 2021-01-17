@@ -1,6 +1,6 @@
 import { constructElevators } from '.'
 
-test('will construct elevators', () => {
+test('constructs elevators', () => {
   const building = {
     elevatorCount: 2,
     numberOfLevels: 13,

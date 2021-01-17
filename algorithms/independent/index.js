@@ -1,2 +1,2 @@
-export { default as updateElevators } from './updateElevators'
-export { default as updatePassengers } from './updatePassengers'
+export { default as getUpdatedElevators } from './getUpdatedElevators'
+export { default as getUpdatedPassengers } from './getUpdatedPassengers'

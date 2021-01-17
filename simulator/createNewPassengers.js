@@ -6,9 +6,9 @@
 // @see module:createPassenger
 import createPassenger from './createPassenger'
 
-export default function createNewPassengers (passengers, load, building) {
-  let allPassengers = [].concat(passengers || [])
-  let count = getCount(load)
+export default function createNewPassengers (passengers = [], load, building) {
+  const count = getCount(load)
+  const allPassengers = [...passengers]
   for (let i = 0; i < count; i++) {
     allPassengers.push(createPassenger(building))
   }

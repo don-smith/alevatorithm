@@ -3,18 +3,24 @@ let totalWaitTime = 0
 let totalTravelTime = 0
 
 export function showCycle (elevators, passengers) {
-  elevators.forEach(({id, floor, direction}) => {
+  elevators.forEach(({id, floor, direction, doorsOpen}) => {
     const directionText = getDirectionText(direction)
-    console.log(`Elevator ${id} is on floor ${floor} ${directionText}`)
+    if (doorsOpen) {
+      console.log(`Elevator ${id} has doors open on floor ${floor}`)
+    } else {
+      console.log(`Elevator ${id} is ${directionText} floor ${floor}`)
+    }
+
     passengers.forEach(({source, destination, inElevator}) => {
       if (inElevator === id) {
         console.log(`  Passenger going from floor ${source} to ${destination}`)
       }
     })
   })
+
   console.log('Waiting passengers:')
   passengers.forEach(({arrived, inElevator, source, destination}) => {
-    if (!arrived && inElevator === false) {
+    if (!arrived && inElevator === 0) {
       console.log(`  Passenger going from floor ${source} to ${destination}`)
     }
   })
@@ -47,10 +53,10 @@ function showArrivalTimes (passengers) {
 function getDirectionText (direction) {
   switch (direction) {
     case -1:
-      return 'going down'
+      return 'going down to'
     case 1:
-      return 'going up'
+      return 'going up to'
     default:
-      return 'not moving'
+      return 'waiting on'
   }
 }
