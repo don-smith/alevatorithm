@@ -1,10 +1,10 @@
-import { constructElevators } from '.'
+import { constructElevators } from './index.js'
 
 test('constructs elevators', () => {
   const building = {
     elevatorCount: 2,
     numberOfLevels: 13,
-    numberOfSublevels: 2
+    numberOfSublevels: 2,
   }
 
   const elevators = constructElevators(building)

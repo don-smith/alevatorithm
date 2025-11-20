@@ -1,20 +1,24 @@
-import getUpdatedPassengers from './getUpdatedPassengers'
+import getUpdatedPassengers from './getUpdatedPassengers.js'
 
 test('a passenger that has already arrived is not changed', () => {
-  const elevators = [{
-    id: 1,
-    floor: 5,
-    direction: 0,
-    doorsOpen: true
-  }]
-  const passengers = [{
-    source: 0,
-    destination: 3,
-    inElevator: 0,
-    arrived: true,
-    waitTime: 3,
-    travelTime: 3
-  }]
+  const elevators = [
+    {
+      id: 1,
+      floor: 5,
+      direction: 0,
+      doorsOpen: true,
+    },
+  ]
+  const passengers = [
+    {
+      source: 0,
+      destination: 3,
+      inElevator: 0,
+      arrived: true,
+      waitTime: 3,
+      travelTime: 3,
+    },
+  ]
 
   const updated = getUpdatedPassengers(passengers, elevators)[0]
 
@@ -25,20 +29,24 @@ test('a passenger that has already arrived is not changed', () => {
 })
 
 test('an arriving passenger exits the elevator', () => {
-  const elevators = [{
-    id: 1,
-    floor: 3,
-    direction: 0,
-    doorsOpen: true
-  }]
-  const passengers = [{
-    source: 0,
-    destination: 3,
-    inElevator: 1,
-    arrived: false,
-    waitTime: 3,
-    travelTime: 3
-  }]
+  const elevators = [
+    {
+      id: 1,
+      floor: 3,
+      direction: 0,
+      doorsOpen: true,
+    },
+  ]
+  const passengers = [
+    {
+      source: 0,
+      destination: 3,
+      inElevator: 1,
+      arrived: false,
+      waitTime: 3,
+      travelTime: 3,
+    },
+  ]
 
   const updated = getUpdatedPassengers(passengers, elevators)[0]
 
@@ -49,20 +57,24 @@ test('an arriving passenger exits the elevator', () => {
 })
 
 test('passengers can enter elevators', () => {
-  const elevators = [{
-    id: 1,
-    floor: 0,
-    direction: 0,
-    doorsOpen: true
-  }]
-  const passengers = [{
-    source: 0,
-    destination: 3,
-    inElevator: 0,
-    arrived: false,
-    waitTime: 3,
-    travelTime: 3
-  }]
+  const elevators = [
+    {
+      id: 1,
+      floor: 0,
+      direction: 0,
+      doorsOpen: true,
+    },
+  ]
+  const passengers = [
+    {
+      source: 0,
+      destination: 3,
+      inElevator: 0,
+      arrived: false,
+      waitTime: 3,
+      travelTime: 3,
+    },
+  ]
 
   const updated = getUpdatedPassengers(passengers, elevators)[0]
 
@@ -73,20 +85,24 @@ test('passengers can enter elevators', () => {
 })
 
 test('travel time is increased for passengers on an elevator', () => {
-  const elevators = [{
-    id: 1,
-    floor: 1,
-    direction: 1,
-    doorsOpen: false
-  }]
-  const passengers = [{
-    source: 0,
-    destination: 3,
-    inElevator: 1,
-    arrived: false,
-    waitTime: 3,
-    travelTime: 3
-  }]
+  const elevators = [
+    {
+      id: 1,
+      floor: 1,
+      direction: 1,
+      doorsOpen: false,
+    },
+  ]
+  const passengers = [
+    {
+      source: 0,
+      destination: 3,
+      inElevator: 1,
+      arrived: false,
+      waitTime: 3,
+      travelTime: 3,
+    },
+  ]
 
   const updated = getUpdatedPassengers(passengers, elevators)[0]
 
@@ -98,20 +114,24 @@ test('travel time is increased for passengers on an elevator', () => {
 })
 
 test('wait time is increased for passengers waiting for an elevator', () => {
-  const elevators = [{
-    id: 1,
-    floor: 4,
-    direction: -1,
-    doorsOpen: false
-  }]
-  const passengers = [{
-    source: 3,
-    destination: 0,
-    inElevator: 0,
-    arrived: false,
-    waitTime: 3,
-    travelTime: 0
-  }]
+  const elevators = [
+    {
+      id: 1,
+      floor: 4,
+      direction: -1,
+      doorsOpen: false,
+    },
+  ]
+  const passengers = [
+    {
+      source: 3,
+      destination: 0,
+      inElevator: 0,
+      arrived: false,
+      waitTime: 3,
+      travelTime: 0,
+    },
+  ]
 
   const updated = getUpdatedPassengers(passengers, elevators)[0]
 

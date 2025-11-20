@@ -1,10 +1,10 @@
-import * as independent from './independent'
+import * as independent from './independent/index.js'
 
 const algorithms = {
-  independent
+  independent,
 }
 
-export function getByName (name, log = console, app = process) {
+export function getByName(name, log = console, app = process) {
   if (!name) {
     const algorithmNames = Object.keys(algorithms)
     log.error(`The algorithm name was not specified.

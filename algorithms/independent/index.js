@@ -1,2 +1,2 @@
-export { default as getUpdatedElevators } from './getUpdatedElevators'
-export { default as getUpdatedPassengers } from './getUpdatedPassengers'
+export { default as getUpdatedElevators } from './getUpdatedElevators.js'
+export { default as getUpdatedPassengers } from './getUpdatedPassengers.js'

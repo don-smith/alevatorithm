@@ -2,10 +2,15 @@
   "name": "alevatorithm",
   "version": "0.1.0",
   "description": "Some elevator algorithms",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "independent": "babel-node index.js independent",
-    "test": "jest --verbose"
+    "independent": "node index.js independent",
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest --verbose",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "repository": {
     "type": "git",
@@ -18,38 +23,12 @@
   "author": "Don Smith <hi@dons.dev>",
   "license": "ISC",
   "homepage": "https://github.com/don-smith/alevatorithm#readme",
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-object-rest-spread",
-      "@babel/plugin-transform-runtime"
-    ]
-  },
-  "eslintConfig": {
-    "env": {
-      "node": true,
-      "jest": true
-    },
-    "extends": [
-      "recommended/esnext",
-      "recommended/esnext/style-guide",
-      "recommended/node",
-      "recommended/node/style-guide"
-    ],
-    "indent": ["error", 2]
-  },
-  "dependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/node": "^7.12.10",
-    "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
-    "@babel/plugin-transform-runtime": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "@babel/register": "^7.12.10",
-    "eslint": "^7.18.0",
-    "eslint-config-recommended": "^4.1.0",
-    "jest": "^26.6.3",
-    "moment": "^2.29.1"
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.5.0",
+    "jest": "^30.2.0",
+    "prettier": "^3.6.2"
   }
 }

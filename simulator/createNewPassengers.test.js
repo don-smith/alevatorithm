@@ -1,10 +1,10 @@
-import createNewPassengers from './createNewPassengers'
+import createNewPassengers from './createNewPassengers.js'
 
 test('number of passengers created does not exceed load', () => {
   const building = {
     elevatorCount: 2,
     numberOfLevels: 13,
-    numberOfSublevels: 2
+    numberOfSublevels: 2,
   }
   const passengerLoad = 10
 

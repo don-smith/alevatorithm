@@ -3,16 +3,16 @@
  * @module getUpdatedPassengers
  */
 
-export default function getUpdatedPassengers (passengers, elevators) {
-  return passengers.map((passenger) => {
-    const currentPassenger = {...passenger}
-    const {arrived, inElevator, source, destination} = currentPassenger
+export default function getUpdatedPassengers(passengers, elevators) {
+  return passengers.map(passenger => {
+    const currentPassenger = { ...passenger }
+    const { arrived, inElevator, source, destination } = currentPassenger
 
     // Don't alter a passenger that's already arrived
     if (arrived) return currentPassenger
 
     // Update passengers boarding and exiting elevators
-    elevators.forEach(({id, floor, doorsOpen}) => {
+    elevators.forEach(({ id, floor, doorsOpen }) => {
       // passenger is boarding
       if (inElevator === 0 && source === floor && doorsOpen) {
         currentPassenger.inElevator = id
