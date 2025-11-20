@@ -1,7 +1,7 @@
-import { constructElevators } from '../building'
-import createNewPassengers from './createNewPassengers'
+import { constructElevators } from '../building/index.js'
+import createNewPassengers from './createNewPassengers.js'
 
-export function runSimulation (building, algorithm, options, monitor) {
+export function runSimulation(building, algorithm, options, monitor) {
   let progress = 1
   let passengers = []
   let elevators = constructElevators(building)
@@ -10,7 +10,7 @@ export function runSimulation (building, algorithm, options, monitor) {
   const { displayCycles, passengerLoad, totalIterations } = options
   const simulationInterval = setInterval(runIteration, 50)
 
-  function runIteration () {
+  function runIteration() {
     passengers = createNewPassengers(passengers, passengerLoad, building)
     elevators = algorithm.getUpdatedElevators(elevators, passengers, building)
     passengers = algorithm.getUpdatedPassengers(passengers, elevators)
@@ -24,4 +24,3 @@ export function runSimulation (building, algorithm, options, monitor) {
     }
   }
 }
-

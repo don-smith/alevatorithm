@@ -1,10 +1,10 @@
-import createPassenger from './createPassenger'
+import createPassenger from './createPassenger.js'
 
 test('source and destination are inside building', () => {
   const building = {
     elevatorCount: 2,
     numberOfLevels: 13,
-    numberOfSublevels: 2
+    numberOfSublevels: 2,
   }
   const passenger = createPassenger(building)
 
@@ -27,7 +27,7 @@ test('source and destination are different', () => {
   const building = {
     elevatorCount: 1,
     numberOfLevels: 2,
-    numberOfSublevels: 2
+    numberOfSublevels: 2,
   }
   const passenger = createPassenger(building)
 
